@@ -3,7 +3,10 @@
 // 🏡 Task 1: Variables
 /* Create variables for principal, interest rate, and years. Assign them the values 200000, 0.05, and 30 respectively. Create another value called name and give it the value of your own name.
 */
-
+var principal = 200000;
+var interest = 0.05;
+var years = 30;
+let name = "Jesus";
 
 
 
@@ -14,7 +17,8 @@
 (1) Create a variable called `monthlyInterestRate` and give it the value of interest rate divided by 12. 
 (2) Create another variable called `periods` and give it the value of years*12.
 */
-
+var monthlyInterestRate = interest / 12;
+var periods = years * 12;
 
 
 
@@ -34,8 +38,9 @@ Hint #2: you'll need to use the `math` object for parts of this calculation!
 
 When your math is correct, monthlyRate will equal 1073.64
 */
-
-
+var monthlyRate = principal * ((monthlyInterestRate * Math.pow((1 + monthlyInterestRate), periods)) / (Math.pow((1 + monthlyInterestRate), periods) - 1));
+var monthlyRate = Math.round(monthlyRate * 100)/100;
+console.log(monthlyRate);
 
 
 // 🏡 Task 3: Function
@@ -43,8 +48,10 @@ When your math is correct, monthlyRate will equal 1073.64
 
 If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly rate is 1073.64"
 */
-
-
+function mortgageCalculator(name, monthlyRate){
+    console.log (name + ", your monthly rate is " + monthlyRate);
+}
+mortgageCalculator(name, monthlyRate);
 
 
 
@@ -54,9 +61,14 @@ If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly 
 For example,
 mortgageCalculator(200000, 0.05, 30); <-- should return 1,073.64
 */
-
-
-
+function mortgageCalc (P,I,N){
+let intrst = I/12;
+let time = N*12;
+ let result = P * ((intrst * Math.pow((1 + intrst), N)) / (Math.pow((1 + intrst), N) - 1));
+ result = Math.round(result * 100) / 100;
+ console.log(result);
+}
+mortgageCalc(200000, 0.05, 30);
 
 
 // 🏡 Task 5: Conditionals
@@ -66,7 +78,30 @@ Then, add control flow within your function such that IF creditScore is above 74
 
 Hint: To drop an interest rate by 5% you can take monthlyRate and multiply it by 0.95. Similarly, to increase an interest rate by 5% you'd do monthlyRate * 1.05. 
 */
-
+function creditScore (P,I,N,C){
+    if (C > 740){
+        I = I - 0.5;
+        let intrst = I/12;
+        let time = N*12;
+        let result = P * ((intrst * Math.pow((1 + intrst), N)) / (Math.pow((1 + intrst), N) - 1));
+        result = Math.round(result * 100) / 100;
+        console.log(result);
+    }else if (C < 660){
+        I = I + 0.5;
+        let intrst = I/12;
+        let time = years*12;
+        let result = P * ((intrst * Math.pow((1 + intrst), N)) / (Math.pow((1 + intrst), N) - 1));
+        result = Math.round(result * 100) / 100;
+        console.log(result);
+    }else{
+        let intrst = I/12;
+        let time = years*12;
+        let result = P * ((intrst * Math.pow((1 + intrst), N)) / (Math.pow((1 + intrst), N) - 1));
+        result = Math.round(result * 100) / 100;
+        console.log(result);
+    }
+}
+creditScore(200000, 0.05, 30, 620);
 
 
 
@@ -85,7 +120,16 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.055, your monthly rate is $1136"
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
-
+function variableInterestRate(P,I,N){
+        for(let i=(I-0.02); i < (I+0.02) ; i=i+0.005){
+        let intrst = i/12;
+        let time = N*12;
+        let result = P * ((intrst * Math.pow((1 + intrst), time)) / (Math.pow((1 + intrst), time) - 1));
+        result = (Math.round(result * 100) / 100);
+        console.log(name + ", with an interest rate of" + i.toFixed(3), "your monthly rate is" + result);
+    }
+}
+    variableInterestRate(200000, 0.04, 30);
 
 
 
